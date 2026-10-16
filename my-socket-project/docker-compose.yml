@@ -1,0 +1,18 @@
+services:
+  server:
+    image: python:3.11-slim
+    container_name: socket-server
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: python3 -u server.py
+
+  client:
+    image: python:3.11-slim
+    container_name: socket-client
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: python3 -u client.py
+    depends_on:
+      - server
